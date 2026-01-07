@@ -43,10 +43,43 @@ else {
 }
 //      than it prints a message in the console showing the string in computerChoice
 console.log(computerChoice);
-//     function getHumanChoice
-//      prompt a question to the human player: "make your choice: rock, paper or scissor"
-//      save the choice in const humanChoice
-//      than it prints a message in the console showing the string in humanChoice
 }
+//     function getHumanChoice
+function getHumanChoice(){
+//      prompt a question to the human player: "make your choice: rock, paper or scissor" and save the choice in const humanChoice
+   humanChoice= prompt("make your choice: rock, paper or scissor"); 
+}     
 
+// create a function playRound (humanChoice, computerChoice) 
+function playRound(humanChoice, computerChoice){
+//    make var humanChoiceLow = humanChoice lowercased
+let humanChoiceLow = humanChoice.toLowerCase();
+    // if humanChoiceLow is the same as computerChoice
+if (humanChoiceLow === computerChoice)
+    //     print round tied
+    console.log("Round Tied!");
+    // else if (humanChoiceLow === rock and computerChoice === scissors) or (humanChoiceLow === paper and computerChoice === rock) or (humanChoiceLow === scissors && computerChoice === paper)
+else if ((humanChoiceLow === "rock" && computerChoice === "scissors") || (humanChoiceLow === "paper" && computerChoice === "rock") || (humanChoiceLow === "scissors" && computerChoice === "paper")){
+    //     Print "Wow, you won!" humanChoice "beats" computerChoice
+    console.log("Wow, you won! " +humanChoice+ " beats " +computerChoice);
+    //     humanScore increase by one
+    humanScore++;
+    console.log(humanScore);
+}
+else{
+    // else
+    //     print "you lost this round" humanChoice "lose against" computerChoice"
+    console.log("you lost this round "+ humanChoice +" lose against " +computerChoice)
+    //     computerScore increase by one
+    computerScore++;
+    console.log(computerScore);
+}}
+
+getHumanChoice();
+//      than it prints a message in the console showing the string in humanChoice
+console.log(humanChoice.toLowerCase());
 getComputerChoice();
+playRound(humanChoice, computerChoice);
+
+
+
