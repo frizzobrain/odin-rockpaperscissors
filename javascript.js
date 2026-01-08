@@ -43,17 +43,20 @@ else {
 }
 //      than it prints a message in the console showing the string in computerChoice
 console.log(computerChoice);
+//return what's in var computerChoice
+return computerChoice;
 }
 //     function getHumanChoice
 function getHumanChoice(){
 //      prompt a question to the human player: "make your choice: rock, paper or scissor" and save the choice in const humanChoice
    humanChoice= prompt("make your choice: rock, paper or scissor"); 
+   return humanChoice;
 }     
 
 // create a function playRound (humanChoice, computerChoice) 
 function playRound(humanChoice, computerChoice){
 //    make var humanChoiceLow = humanChoice lowercased
-let humanChoiceLow = humanChoice.toLowerCase();
+humanChoiceLow = humanChoice.toLowerCase();
     // if humanChoiceLow is the same as computerChoice
 if (humanChoiceLow === computerChoice)
     //     print round tied
@@ -73,13 +76,40 @@ else{
     //     computerScore increase by one
     computerScore++;
     console.log(computerScore);
-}}
+}
+}
 
-getHumanChoice();
-//      than it prints a message in the console showing the string in humanChoice
-console.log(humanChoice.toLowerCase());
-getComputerChoice();
-playRound(humanChoice, computerChoice);
+//PSEUDOCODE for funcion playGame:
 
+
+//create a function without any input that doesn't return any valor called playGame()
+function playGame(){
+//make a var i that starts from 0
+let i = 0;
+//while i<5 
+while (i<5){
+    //let human choice what to play and collect the choice in var humanChoice
+    humanChoice= getHumanChoice();
+    //collect in var computerChoice the computer's choice
+    computerChoice= getComputerChoice();
+    //      than it prints a message in the console showing the string in humanChoice
+    console.log(humanChoice.toLowerCase());
+    //use the data collected as imput for the function playRound()
+    playRound(humanChoice, computerChoice);
+    i++;
+    }
+//at the end of the cycle, if Human wins, print "OH YES, you won. Congratulations!" 
+if (humanScore>=computerScore)
+    console.log("OH YES, you won. Congratulations!"); //yes you will win also a tied match because joy must prevail in this world! :O
+//else print "Computer got the best of you. Better luck next time!"
+else 
+    console.log("Computer got the best of you. Better luck next time!");
+//print the Human score with a message describing it
+console.log("Final Human Score: "+humanScore);
+//print the computer score with a message describing it
+console.log("Final computer Score: "+computerScore);
+}
+
+playGame();
 
 
