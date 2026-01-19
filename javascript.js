@@ -35,6 +35,8 @@ computerChoiceDisplay.classList = "computerChoice";
 computerChoiceDisplay.textContent = "Computer choice is: ";
 
 document.body.appendChild(computerChoiceDisplay);
+
+
 // create var humanScore and set to 0
 let humanScore = 0;
 let humanScoreDisplay = document.createElement("div");
@@ -47,6 +49,10 @@ let computerScoreDisplay = document.createElement("div");
 computerScoreDisplay.textContent = "Computer score is: "+ computerScore;
 
 document.body.appendChild(computerScoreDisplay);
+
+let winner = document.createElement("div");
+
+document.body.append(winner);
 //     function getComputerChoice
 function getComputerChoice(){
 //      create a var named random containing a random number between 0 and 99
@@ -95,6 +101,9 @@ else if ((humanChoice === "rock" && computerChoice === "scissors") || (humanChoi
     console.log("Wow, you won! " +humanChoice+ " beats " +computerChoice);
     //     humanScore increase by one
     humanScore++;
+    if (humanScore== 5){
+        winner.textContent= "Player won! Congratulations!"
+    }
     humanScoreDisplay.textContent = "Player score is: ";
     humanScoreDisplay.textContent += humanScore;
     console.log(humanScore);
@@ -105,6 +114,9 @@ else{
     console.log("you lost this round "+ humanChoice +" lose against " +computerChoice)
     //     computerScore increase by one
     computerScore++;
+    if (computerScore == 5){
+        winner.textContent= "Computer won! This is really sad!"
+    }
     computerScoreDisplay.textContent = "Computer score is: ";
     computerScoreDisplay.textContent += computerScore;
     console.log(computerScore);
