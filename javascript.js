@@ -1,7 +1,7 @@
 //Algorithm
 
-// create variable humanChoice (must by tipe string and possible strings are rock paper scissors)
-// create variable computerChoice (must by tipe string and possible strings are rock paper scissors)
+// create variable humanChoice (must by type string and possible strings are rock paper scissors)
+// create variable computerChoice (must by type string and possible strings are rock paper scissors)
 // create variable humanScore type int starting from 0
 // create variable computerScore type int starting from 0
 // inputs
@@ -15,15 +15,38 @@
 // create a function (playGame) that will run 5 rounds and than console.log the winner
 
 //Pseudo code
-
+const buttons = document.querySelectorAll("button");
+buttons.forEach ((button) => {
+    button.addEventListener("click", function (e) {
+        playRound(e.target.textContent);
+});
+});
 // create const string humanChoice and set to empty
-let humanChoice = '';
+let humanChoice = "";
+let humanChoiceDisplay = document.createElement("div");
+humanChoiceDisplay.classList="humanChoice";
+humanChoiceDisplay.textContent= "Player choice is: ";
+
+document.body.appendChild(humanChoiceDisplay);
 // create const string computerChoice and set to empty
-let computerChoice = '';
+let computerChoice = "";
+let computerChoiceDisplay = document.createElement("div");
+computerChoiceDisplay.classList = "computerChoice";
+computerChoiceDisplay.textContent = "Computer choice is: ";
+
+document.body.appendChild(computerChoiceDisplay);
 // create var humanScore and set to 0
 let humanScore = 0;
+let humanScoreDisplay = document.createElement("div");
+humanScoreDisplay.textContent = "Player score is: "+ humanScore;
+
+document.body.appendChild(humanScoreDisplay);
 // create var computerScore and set to 0 
 let computerScore = 0;
+let computerScoreDisplay = document.createElement("div");
+computerScoreDisplay.textContent = "Computer score is: "+ computerScore;
+
+document.body.appendChild(computerScoreDisplay);
 //     function getComputerChoice
 function getComputerChoice(){
 //      create a var named random containing a random number between 0 and 99
@@ -31,42 +54,49 @@ let random = Math.random()*100;
 console.log(random);
 //      if the number is minor then 33 saves in var computerChoice the string "rock"
 if (random<33){
+    computerChoiceDisplay.textContent = "Computer choice is: "
     computerChoice="rock";
+    computerChoiceDisplay.textContent+= computerChoice;
 }
 //      if the number is bigger than 32 and lesser than 66 saves in var computerChoice the string "paper"
 else if (random>= 33 &&random < 66){
+    computerChoiceDisplay.textContent = "Computer choice is: "
     computerChoice="paper";
+    computerChoiceDisplay.textContent+= computerChoice;
 }
 //      if the number is bigger than 65 saves in var computerChoice the string "scissors"
 else {
+    computerChoiceDisplay.textContent = "Computer choice is: "
     computerChoice="scissors";
+    computerChoiceDisplay.textContent+= computerChoice;
 }
 //      than it prints a message in the console showing the string in computerChoice
-console.log(computerChoice);
+//console.log(computerChoice);
 //return what's in var computerChoice
 return computerChoice;
 }
-//     function getHumanChoice
-function getHumanChoice(){
-//      prompt a question to the human player: "make your choice: rock, paper or scissor" and save the choice in const humanChoice
-   humanChoice= prompt("make your choice: rock, paper or scissor"); 
-   return humanChoice;
-}     
+
 
 // create a function playRound (humanChoice, computerChoice) 
-function playRound(humanChoice, computerChoice){
+function playRound(e){
+humanChoice = e.toLowerCase();
+humanChoiceDisplay.textContent= "Player choice is: "
+humanChoiceDisplay.textContent+= humanChoice;
+console.log("humanChoice="+humanChoice);
 //    make var humanChoiceLow = humanChoice lowercased
-humanChoiceLow = humanChoice.toLowerCase();
+computerChoice = getComputerChoice();
     // if humanChoiceLow is the same as computerChoice
-if (humanChoiceLow === computerChoice)
+if (humanChoice === computerChoice)
     //     print round tied
     console.log("Round Tied!");
     // else if (humanChoiceLow === rock and computerChoice === scissors) or (humanChoiceLow === paper and computerChoice === rock) or (humanChoiceLow === scissors && computerChoice === paper)
-else if ((humanChoiceLow === "rock" && computerChoice === "scissors") || (humanChoiceLow === "paper" && computerChoice === "rock") || (humanChoiceLow === "scissors" && computerChoice === "paper")){
+else if ((humanChoice === "rock" && computerChoice === "scissors") || (humanChoice === "paper" && computerChoice === "rock") || (humanChoice === "scissors" && computerChoice === "paper")){
     //     Print "Wow, you won!" humanChoice "beats" computerChoice
     console.log("Wow, you won! " +humanChoice+ " beats " +computerChoice);
     //     humanScore increase by one
     humanScore++;
+    humanScoreDisplay.textContent = "Player score is: ";
+    humanScoreDisplay.textContent += humanScore;
     console.log(humanScore);
 }
 else{
@@ -75,6 +105,8 @@ else{
     console.log("you lost this round "+ humanChoice +" lose against " +computerChoice)
     //     computerScore increase by one
     computerScore++;
+    computerScoreDisplay.textContent = "Computer score is: ";
+    computerScoreDisplay.textContent += computerScore;
     console.log(computerScore);
 }
 }
@@ -110,6 +142,7 @@ console.log("Final Human Score: "+humanScore);
 console.log("Final computer Score: "+computerScore);
 }
 
-playGame();
+//playGame();
+
 
 
